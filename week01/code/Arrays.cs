@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public static class Arrays
 {
     /// <summary>
@@ -8,12 +10,24 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // How to solve the problem: Reverse engineering can be used when calculating the remainder of a division:
+        // 1. Create a fixed array that will store "length" amount of numbers. Then declare "multiple" as 1, which will be used to multiplicate to "number".
+        // 2. Create a loop that will iterate "lenght" times. In other words, as long as "i" is less than "length". Declare "i" as 0 and make it go up in each iteration.
+        // 3. Inside the loop, the fixed array in position "i" will store the value "number" times "multiple".
+        // 4. Inside the loop, add 1 to "multiple".
+        // 4. Outside the loop, return the array.
 
-        return []; // replace this return statement with your own
+        var result = new double[length];
+        var multiple = 1;
+
+
+        for (int i = 0; i < length; ++i)
+        {
+            result[i] = number * multiple;
+            multiple++;
+        }
+
+        return result; // replace this return statement with your own
     }
 
     /// <summary>
@@ -25,9 +39,23 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        //Comments here!
+        // 1. Take the data array and slice it in 2 parts: the first part will be the numbers that must go to the right (from index 0 to all the numbers minus the ones that must go to the left), the second part are the numbers that must go to the left (index is data's lenght - amount to amount).
+        // 2. Append the right part to the end of the left part: leftPart adds rightPart to the end of the leftPart array.
+        // 3. Create a for loop that iterates as long as data's length, starts from 0 and increases by 1 each iteration.
+        // 4. Inside the loop, replace each index from data with the values from leftpart. Basically you are copying the data from the new array (leftpart) into the original array (data).
+
+        var leftPart = data.GetRange(0, data.Count - amount);
+        var rightPart = data.GetRange(data.Count - amount, amount);
+        rightPart.AddRange(leftPart);
+
+        
+        for (int i = 0; i < data.Count; i++)
+        {
+            
+            data[i] = rightPart[i];
+        }
+
+
     }
 }
