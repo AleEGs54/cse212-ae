@@ -5,14 +5,8 @@
 public class CustomerService {
     public static void Run() {
         // Example code to see what's in the customer service queue:
-        // var cs = new CustomerService(10);
-        // Console.WriteLine(cs);
-
-        // Test Cases
-
-        // Test 1
-        // Scenario: 
-        // Expected Result: 
+        var cs = new CustomerService(10);
+        Console.WriteLine(cs);
         Console.WriteLine("Test 1");
 
         // Defect(s) Found: 
@@ -22,10 +16,12 @@ public class CustomerService {
         // Test 2
         // Scenario: 
         // Expected Result: 
+        cs.AddNewCustomer();
+        cs.AddNewCustomer();
         Console.WriteLine("Test 2");
 
         // Defect(s) Found: 
-
+        cs.ServeCustomer();
         Console.WriteLine("=================");
 
         // Add more Test Cases As Needed Below
@@ -67,7 +63,7 @@ public class CustomerService {
     /// </summary>
     private void AddNewCustomer() {
         // Verify there is room in the service queue
-        if (_queue.Count > _maxSize) {
+        if (_queue.Count == _maxSize) {
             Console.WriteLine("Maximum Number of Customers in Queue.");
             return;
         }
