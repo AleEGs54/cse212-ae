@@ -27,10 +27,26 @@ public class Basketball
             var fields = reader.ReadFields()!;
             var playerId = fields[0];
             var points = int.Parse(fields[8]);
+
+            if (players.ContainsKey(playerId))
+            {
+                players[playerId] += points;
+            } else
+            {
+                players[playerId] = points;
+            }
+
         }
 
-        Console.WriteLine($"Players: {{{string.Join(", ", players)}}}");
+        // var topplayer = new Dictionary<string, int>();
+        KeyValuePair<string, int>[] playerArray = players.ToArray();
+        // var topPlayers = players.ToArray();
 
-        var topPlayers = new string[10];
+        Array.Sort(playerArray, (x, y) => y.Value.CompareTo(x.Value));
+       
+       for (int i = 0; i < 10; i++)
+       Console.WriteLine(
+                $"Rank {i + 1}: Player {playerArray[i].Key} - {playerArray[i].Value} points"
+            );
     }
 }
