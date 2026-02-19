@@ -12,6 +12,7 @@ public class Node
     public void Insert(int value)
     {
 
+//Duplicated data
         if (value == Data)
             return;
 
