@@ -202,7 +202,7 @@ public class SolveMazeTests
         };
         CollectionAssert.AreEqual(expected, results);
     }
-
+ 
     [TestMethod]
     public void SolveMaze_Large()
     {
